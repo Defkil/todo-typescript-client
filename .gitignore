@@ -1,1 +1,4 @@
 .idea
+.tscache
+node_modules/
+dist/
