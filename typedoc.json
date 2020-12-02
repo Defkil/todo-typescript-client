@@ -1,0 +1,9 @@
+{
+  "module": "commonjs",
+  "target": "es5",
+  "out": "docs/",
+  "name": "todo-typescript-client",
+  "tsconfig": "tsconfig.dev.json",
+  "readme": "README.md",
+  "ignoreCompilerErrors": true
+}

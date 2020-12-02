@@ -1,5 +1,7 @@
+const typedocConfig = require('./typedoc.json')
+
 module.exports = function(grunt) {
-    grunt.initConfig({
+    grunt.config.init({
         pkg: grunt.file.readJSON('package.json'),
         ts: {
             default : {
@@ -7,15 +9,30 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            typescript: {
+            typescript: { // only typescript
                 files: ['src/**/*.ts'],
                 tasks: ['ts']
+            },
+            'ts-doc': { // typescript and typedoc
+                files: ['src/**/*.ts'],
+                tasks: ['ts', 'typedoc']
+            }
+        },
+        typedoc: {
+            build: {
+                options: typedocConfig,
+                src: 'src/**/*'
             }
         }
-    });
+    })
 
-    grunt.loadNpmTasks('grunt-ts');
-    grunt.registerTask('default', ['ts']);
+    // typescript
+    grunt.loadNpmTasks('grunt-ts')
+    grunt.registerTask('default', ['ts'])
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
-};
+    // watch handler
+    grunt.loadNpmTasks('grunt-contrib-watch')
+
+    // typedoc
+    grunt.loadNpmTasks('grunt-typedoc')
+}
