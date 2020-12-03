@@ -1,38 +1,70 @@
-const typedocConfig = require('./typedoc.json')
+const PACKAGE_FILE = 'package.json',
+    CONFIG_ESLINT = '.eslintrc.json',
+    CONFIG_TS = 'tsconfig.dev.json',
+    CONFIG_TYPEDOC = 'typedoc.json',
+    TS_FILES_BLOB = ['src/**/*.ts'],
+    ASSETS_SRC = ['src/assets/**'],
+    ASSETS_DIST = 'src/assets/**'
 
 module.exports = function(grunt) {
     grunt.config.init({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON(PACKAGE_FILE),
         ts: {
             default : {
-                tsconfig: './tsconfig.dev.json'
+                tsconfig: CONFIG_TS
             }
         },
         watch: {
+            main: {
+                files: TS_FILES_BLOB,
+                tasks: ['eslint','ts', 'typedoc']
+            },
             typescript: { // only typescript
-                files: ['src/**/*.ts'],
+                files: TS_FILES_BLOB,
                 tasks: ['ts']
             },
             'ts-doc': { // typescript and typedoc
-                files: ['src/**/*.ts'],
+                files: TS_FILES_BLOB,
                 tasks: ['ts', 'typedoc']
+            },
+            lint: {
+                files: TS_FILES_BLOB,
+                tasks: ['eslint']
             }
         },
         typedoc: {
             build: {
-                options: typedocConfig,
-                src: 'src/**/*'
+                options: require(CONFIG_TYPEDOC),
+                src: TS_FILES_BLOB
             }
-        }
+        },
+        eslint: {
+            options: {
+                configFile: CONFIG_ESLINT
+            },
+            target: TS_FILES_BLOB
+        },
+        copy: {
+            main: {
+                files: [
+                    {expand: true, src: ASSETS_SRC, dest: ASSETS_DIST},
+                ],
+            },
+        },
     })
 
-    // typescript
-    grunt.loadNpmTasks('grunt-ts')
-    grunt.registerTask('default', ['ts'])
-
-    // watch handler
+    // loading tasks
     grunt.loadNpmTasks('grunt-contrib-watch')
-
-    // typedoc
+    grunt.loadNpmTasks('grunt-ts')
     grunt.loadNpmTasks('grunt-typedoc')
+    grunt.loadNpmTasks('grunt-eslint')
+    grunt.loadNpmTasks('grunt-contrib-copy')
+
+    // default build task
+    grunt.registerTask('default', ['eslint', 'ts', 'copy'])
+
+    // dev task
+    grunt.registerTask('dev', ['eslint', 'ts', 'typedoc', 'copy'])
+
+    //todo clean task
 }
