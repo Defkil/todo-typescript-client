@@ -1,17 +1,27 @@
+const { join } = require('path')
+
 const PACKAGE_FILE = 'package.json',
     CONFIG_ESLINT = '.eslintrc.json',
     CONFIG_TS = 'tsconfig.dev.json',
-    CONFIG_TYPEDOC = 'typedoc.json',
-    TS_FILES_BLOB = ['src/**/*.ts'],
-    ASSETS_SRC = ['src/assets/**'],
-    ASSETS_DIST = 'src/assets/**'
+    CONFIG_TYPEDOC = './typedoc.json',
+    TS_CACHE_DIR = '.tscache',
+    SRC_FOLDER = 'src/',
+    DIST_FOLDER = 'dist/',
+    DOCS_DIST = 'docs/',
+    TS_FILES_BLOB = [join(SRC_FOLDER, '**/*.ts')],
+    ASSETS_SRC = [join(SRC_FOLDER + 'assets/**')],
+    ASSETS_DIST = join(DIST_FOLDER + 'assets/**')
 
 module.exports = function(grunt) {
+    const typedoc_config = require('./' + CONFIG_TYPEDOC)
+    typedoc_config.out = DOCS_DIST
+
     grunt.config.init({
         pkg: grunt.file.readJSON(PACKAGE_FILE),
         ts: {
             default : {
-                tsconfig: CONFIG_TS
+                tsconfig: CONFIG_TS,
+                tsCacheDir: TS_CACHE_DIR
             }
         },
         watch: {
@@ -34,7 +44,7 @@ module.exports = function(grunt) {
         },
         typedoc: {
             build: {
-                options: require(CONFIG_TYPEDOC),
+                options: typedoc_config,
                 src: TS_FILES_BLOB
             }
         },
@@ -51,6 +61,7 @@ module.exports = function(grunt) {
                 ],
             },
         },
+        clean: [DIST_FOLDER, DOCS_DIST, TS_CACHE_DIR],
     })
 
     // loading tasks
@@ -59,12 +70,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-typedoc')
     grunt.loadNpmTasks('grunt-eslint')
     grunt.loadNpmTasks('grunt-contrib-copy')
+    grunt.loadNpmTasks('grunt-contrib-clean')
 
     // default build task
     grunt.registerTask('default', ['eslint', 'ts', 'copy'])
 
     // dev task
     grunt.registerTask('dev', ['eslint', 'ts', 'typedoc', 'copy'])
-
-    //todo clean task
 }
