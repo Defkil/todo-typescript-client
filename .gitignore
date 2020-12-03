@@ -1,5 +1,6 @@
 .idea
 .tscache
+.sass-cache
 node_modules/
 
 dist/
