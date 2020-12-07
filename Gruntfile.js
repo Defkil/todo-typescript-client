@@ -1,10 +1,12 @@
 const { join } = require('path')
 
+// config files
 const PACKAGE_FILE = 'package.json',
     CONFIG_ESLINT = '.eslintrc.json',
     CONFIG_TS = 'tsconfig.dev.json',
     CONFIG_TYPEDOC = './typedoc.json'
 
+// directories
 const DIR_TS_CACHE = '.tscache',
     DIR_SASS_CACHE = '.sass-cache',
     DIR_SRC = 'src/',
@@ -12,20 +14,24 @@ const DIR_TS_CACHE = '.tscache',
     DIR_DIST_DOCS = 'docs/',
     DIR_DIST_ASSETS = join(DIR_DIST, 'assets')
 
+// source files and blobs
 const SRC_TS_BLOB = [join(DIR_SRC, '**/*.ts')],
-    SRC_SASS_BLOB = [join(DIR_SRC, 'style/**/*.scss')],
     SRC_ASSETS_BLOB = [join(DIR_SRC, 'assets/**')],
     SRC_SASS_FILE = join(DIR_SRC, 'style/index.scss'),
+    SRC_SASS_BLOB = [join(DIR_SRC, 'style/**/*.scss')],
     SRC_EJS_FILE = join(DIR_SRC, 'index.ejs'),
     SRC_EJS_BLOB = [join(DIR_SRC, 'index.ejs'), join(DIR_SRC, '**/*.ejs')]
 
+// dist file names
 const DIST_STYLE_FILE = 'style.css',
     DIST_HTML_FILE = 'index.html'
 
+// live server configs
 const WEBSERVER_PORT = 61337,
     WEBSERVER_RELOAD_PORT = 61338, // set false to disable
     WEBSERVER_LIVERELOAD_FILE = '//localhost:' + WEBSERVER_RELOAD_PORT + '/livereload.js'
 
+// tasks names
 const TASK_CODE = 'ts',
     TASK_DOC = 'typedoc',
     TASK_COPY = 'copy',
@@ -35,6 +41,7 @@ const TASK_CODE = 'ts',
     TASK_HTML_INJECT = 'ejs:inject',
     TASK_MINIFY_HTML = 'htmlmin:prod'
 
+// complete tasks
 const TASK_ARRAY_PRODUCTION = [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE, TASK_HTML, TASK_MINIFY_HTML],
     TASK_ARRAY_DEV = [TASK_LINT, TASK_CODE, TASK_DOC, TASK_COPY, TASK_STYLE, TASK_HTML_INJECT]
 
@@ -62,7 +69,7 @@ module.exports = function(grunt) {
             options: {
                 livereload: WEBSERVER_RELOAD_PORT,
             },
-            typescript: { // only typescript
+            typescript: {
                 files: SRC_TS_BLOB,
                 tasks: [TASK_CODE, TASK_DOC]
             },
