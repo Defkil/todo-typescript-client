@@ -9,12 +9,8 @@
     "build": "grunt",
     "live": "grunt live",
     "docs": "grunt typedoc",
-    "eslint": "eslint -c .eslintrc.json src/**/*.ts",
-    "eslint:fix": "eslint -c .eslintrc.json src/**/*.ts --fix",
-    "watch": "grunt watch:main",
-    "watch:ts": "grunt watch:typescript",
-    "watch:ts-doc": "grunt watch:ts-doc",
-    "watch:lint": "grunt watch:lint"
+    "eslint": "grunt eslint",
+    "eslint:fix": "eslint -c .eslintrc.json src/**/*.ts --fix"
   },
   "author": "Oliver Grüttner",
   "license": "Apache-2.0",
