@@ -1,3 +1,4 @@
+
 const { join } = require('path')
 
 const PACKAGE_FILE = 'package.json',
@@ -6,6 +7,7 @@ const PACKAGE_FILE = 'package.json',
     CONFIG_TYPEDOC = './typedoc.json'
 
 const DIR_TS_CACHE = '.tscache',
+    DIR_SASS_CACHE = '.sass-cache',
     DIR_SRC = 'src/',
     DIR_DIST = 'dist/',
     DIR_DIST_DOCS = 'docs/',
@@ -14,20 +16,41 @@ const DIR_TS_CACHE = '.tscache',
 const SRC_TS_BLOB = [join(DIR_SRC, '**/*.ts')],
     SRC_SASS_BLOB = [join(DIR_SRC, 'style/**/*.scss')],
     SRC_ASSETS_BLOB = [join(DIR_SRC, 'assets/**')],
-    SRC_SASS_FILE = join(DIR_SRC, 'style/index.scss')
+    SRC_SASS_FILE = join(DIR_SRC, 'style/index.scss'),
+    SRC_EJS_FILE = join(DIR_SRC, 'index.ejs'),
+    SRC_EJS_BLOB = [join(DIR_SRC, 'index.ejs'), join(DIR_SRC, '**/*.ejs')]
 
-const DIST_STYLE_FILE = 'style.css'
+const DIST_STYLE_FILE = 'style.css',
+    DIST_HTML_FILE = 'index.html'
+
+const WEBSERVER_PORT = 61337,
+    WEBSERVER_RELOAD_PORT = 61338 // set false to disable
+
+const WEBSERVER_LIVERELOAD_FILE = '//localhost:' + WEBSERVER_RELOAD_PORT + '/livereload.js'
 
 const TASK_CODE = 'ts',
     TASK_DOC = 'typedoc',
     TASK_COPY = 'copy',
     TASK_LINT = 'eslint',
     TASK_STYLE = 'dart-sass',
+    TASK_HTML = 'ejs:production',
+    TASK_HTML_INJECT = 'ejs:inject',
     TASK_MINIFY_HTML = 'htmlmin:prod'
+
+const TASK_ARRAY_PRODUCTION = [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE, TASK_HTML, TASK_MINIFY_HTML],
+    TASK_ARRAY_DEV = [TASK_LINT, TASK_CODE, TASK_DOC, TASK_COPY, TASK_STYLE, TASK_HTML_INJECT]
+
+
+
+
+
 
 module.exports = function(grunt) {
     const typedoc_config = require('./' + CONFIG_TYPEDOC)
     typedoc_config.out = DIR_DIST_DOCS
+
+    const minify_files = {}
+    minify_files[join(DIR_DIST, DIST_HTML_FILE)] = join(DIR_DIST, DIST_HTML_FILE)
 
     const SRC_SASS_OPTIONS = {
         src: SRC_SASS_FILE,
@@ -43,15 +66,10 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            main: {
-                files: SRC_TS_BLOB,
-                tasks: [TASK_LINT, TASK_CODE, TASK_DOC]
+            options: {
+                livereload: WEBSERVER_RELOAD_PORT,
             },
             typescript: { // only typescript
-                files: SRC_TS_BLOB,
-                tasks: [TASK_CODE]
-            },
-            'ts-doc': { // typescript and typedoc
                 files: SRC_TS_BLOB,
                 tasks: [TASK_CODE, TASK_DOC]
             },
@@ -62,6 +80,10 @@ module.exports = function(grunt) {
             style: {
                 files: SRC_SASS_BLOB,
                 tasks: [TASK_STYLE]
+            },
+            ejs: {
+                files: SRC_EJS_BLOB,
+                tasks: [TASK_HTML_INJECT]
             },
             assets: {
                 files: SRC_ASSETS_BLOB,
@@ -81,11 +103,19 @@ module.exports = function(grunt) {
             target: SRC_TS_BLOB
         },
         ejs: {
-            all: {
-                src: ['src/index.ejs'],
-                dest: 'dist/index.html',
+            production: {
+                src: [SRC_EJS_FILE],
+                dest: join(DIR_DIST, DIST_HTML_FILE),
                 expand: false,
             },
+            inject: {
+                src: [SRC_EJS_FILE],
+                dest: join(DIR_DIST, DIST_HTML_FILE),
+                expand: false,
+                options: {
+                    injectSnippet: '<script src="' + WEBSERVER_LIVERELOAD_FILE +'"></script>'
+                }
+            }
         },
         'dart-sass': {
             dist: {
@@ -108,9 +138,7 @@ module.exports = function(grunt) {
                     removeComments: true,
                     collapseWhitespace: true
                 },
-                files: {
-                    'dist/index.html': 'dist/index.html',
-                }
+                files: minify_files
             }
         },
         copy: {
@@ -120,24 +148,32 @@ module.exports = function(grunt) {
                 ],
             },
         },
-        clean: [DIR_DIST, DIR_DIST_DOCS, DIR_TS_CACHE],
+        clean: [DIR_DIST, DIR_DIST_DOCS, DIR_TS_CACHE, DIR_SASS_CACHE],
+        connect: {
+            server: {
+                options: {
+                    port: WEBSERVER_PORT,
+                    hostname: '*',
+                    base: DIR_DIST,
+                    keepalive: true
+                },
+            },
+        },
+        concurrent: {
+            production: TASK_ARRAY_PRODUCTION,
+            dev: TASK_ARRAY_DEV,
+            live: {
+                tasks: ['watch', 'connect', ...TASK_ARRAY_DEV],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
+        }
     })
 
-    // loading tasks
-    grunt.loadNpmTasks('grunt-contrib-watch')
-    grunt.loadNpmTasks('grunt-ts')
-    grunt.loadNpmTasks('grunt-typedoc')
-    grunt.loadNpmTasks('grunt-eslint')
-    grunt.loadNpmTasks('grunt-ejs')
-    grunt.loadNpmTasks('grunt-dart-sass')
-    grunt.loadNpmTasks('grunt-contrib-htmlmin')
-    grunt.loadNpmTasks('grunt-contrib-copy')
-    grunt.loadNpmTasks('grunt-contrib-clean')
+    require('load-grunt-tasks')(grunt)
 
-    // default/production build task
-    grunt.registerTask('production', [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE, TASK_MINIFY_HTML])
-    grunt.registerTask('default', 'production')
-
-    // dev task
-    grunt.registerTask('dev', [TASK_LINT, TASK_CODE, TASK_DOC, TASK_COPY, TASK_STYLE])
+    grunt.registerTask('default', 'concurrent:production')
+    grunt.registerTask('dev', 'concurrent:production')
+    grunt.registerTask('live', 'concurrent:live')
 }
