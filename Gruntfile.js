@@ -22,7 +22,8 @@ const TASK_CODE = 'ts',
     TASK_DOC = 'typedoc',
     TASK_COPY = 'copy',
     TASK_LINT = 'eslint',
-    TASK_STYLE = 'dart-sass'
+    TASK_STYLE = 'dart-sass',
+    TASK_MINIFY_HTML = 'htmlmin:prod'
 
 module.exports = function(grunt) {
     const typedoc_config = require('./' + CONFIG_TYPEDOC)
@@ -79,6 +80,13 @@ module.exports = function(grunt) {
             },
             target: SRC_TS_BLOB
         },
+        ejs: {
+            all: {
+                src: ['src/index.ejs'],
+                dest: 'dist/index.html',
+                expand: false,
+            },
+        },
         'dart-sass': {
             dist: {
                 options: {
@@ -92,6 +100,17 @@ module.exports = function(grunt) {
                     outputStyle: 'compressed'
                 },
                 files: [SRC_SASS_OPTIONS]
+            }
+        },
+        htmlmin: {
+            prod: {
+                options: {
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                    'dist/index.html': 'dist/index.html',
+                }
             }
         },
         copy: {
@@ -109,12 +128,15 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-ts')
     grunt.loadNpmTasks('grunt-typedoc')
     grunt.loadNpmTasks('grunt-eslint')
+    grunt.loadNpmTasks('grunt-ejs')
     grunt.loadNpmTasks('grunt-dart-sass')
+    grunt.loadNpmTasks('grunt-contrib-htmlmin')
     grunt.loadNpmTasks('grunt-contrib-copy')
     grunt.loadNpmTasks('grunt-contrib-clean')
 
-    // default build task
-    grunt.registerTask('default', [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE])
+    // default/production build task
+    grunt.registerTask('production', [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE, TASK_MINIFY_HTML])
+    grunt.registerTask('default', 'production')
 
     // dev task
     grunt.registerTask('dev', [TASK_LINT, TASK_CODE, TASK_DOC, TASK_COPY, TASK_STYLE])
