@@ -1,4 +1,3 @@
-
 const { join } = require('path')
 
 const PACKAGE_FILE = 'package.json',
@@ -24,9 +23,8 @@ const DIST_STYLE_FILE = 'style.css',
     DIST_HTML_FILE = 'index.html'
 
 const WEBSERVER_PORT = 61337,
-    WEBSERVER_RELOAD_PORT = 61338 // set false to disable
-
-const WEBSERVER_LIVERELOAD_FILE = '//localhost:' + WEBSERVER_RELOAD_PORT + '/livereload.js'
+    WEBSERVER_RELOAD_PORT = 61338, // set false to disable
+    WEBSERVER_LIVERELOAD_FILE = '//localhost:' + WEBSERVER_RELOAD_PORT + '/livereload.js'
 
 const TASK_CODE = 'ts',
     TASK_DOC = 'typedoc',
@@ -39,11 +37,6 @@ const TASK_CODE = 'ts',
 
 const TASK_ARRAY_PRODUCTION = [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE, TASK_HTML, TASK_MINIFY_HTML],
     TASK_ARRAY_DEV = [TASK_LINT, TASK_CODE, TASK_DOC, TASK_COPY, TASK_STYLE, TASK_HTML_INJECT]
-
-
-
-
-
 
 module.exports = function(grunt) {
     const typedoc_config = require('./' + CONFIG_TYPEDOC)
