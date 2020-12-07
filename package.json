@@ -7,6 +7,7 @@
     "test": "cross-env TS_NODE_FILES=true mocha -r ts-node/register -exit test/**/*.ts",
     "coverage": "nyc npm run test",
     "build": "grunt",
+    "live": "grunt live",
     "docs": "grunt typedoc",
     "eslint": "eslint -c .eslintrc.json src/**/*.ts",
     "eslint:fix": "eslint -c .eslintrc.json src/**/*.ts --fix",
