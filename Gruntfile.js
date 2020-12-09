@@ -16,11 +16,11 @@ const DIR_TS_CACHE = '.tscache',
 
 // source files and blobs
 const SRC_TS_BLOB = [join(DIR_SRC, '**/*.ts')],
-    SRC_ASSETS_BLOB = [join(DIR_SRC, 'assets/**')],
-    SRC_SASS_FILE = join(DIR_SRC, 'style/index.scss'),
-    SRC_SASS_BLOB = [join(DIR_SRC, 'style/**/*.scss')],
-    SRC_EJS_FILE = join(DIR_SRC, 'index.ejs'),
-    SRC_EJS_BLOB = [join(DIR_SRC, 'index.ejs'), join(DIR_SRC, '**/*.ejs')]
+    SRC_ASSETS_BLOB = [join(DIR_SRC, 'client/assets/**')],
+    SRC_SASS_FILE = join(DIR_SRC, 'client/style/index.scss'),
+    SRC_SASS_BLOB = [join(DIR_SRC, 'client/index.scss'), join(DIR_SRC, 'client/style/**/*.scss')],
+    SRC_EJS_FILE = join(DIR_SRC, 'client/index.ejs'),
+    SRC_EJS_BLOB = [join(DIR_SRC, 'client/index.ejs'), join(DIR_SRC, 'client/**/*.ejs')]
 
 // dist file names
 const DIST_STYLE_FILE = 'style.css',
@@ -29,7 +29,8 @@ const DIST_STYLE_FILE = 'style.css',
 // live server configs
 const WEBSERVER_PORT = 61337,
     WEBSERVER_RELOAD_PORT = 61338, // set false to disable
-    WEBSERVER_LIVERELOAD_FILE = '//localhost:' + WEBSERVER_RELOAD_PORT + '/livereload.js'
+    WEBSERVER_LIVERELOAD_FILE = '//localhost:' + WEBSERVER_RELOAD_PORT + '/livereload.js',
+    WEBSERVER_OPEN_BROWSER = true
 
 // tasks names
 const TASK_CODE = 'ts',
@@ -71,11 +72,7 @@ module.exports = function(grunt) {
             },
             typescript: {
                 files: SRC_TS_BLOB,
-                tasks: [TASK_CODE, TASK_DOC]
-            },
-            lint: {
-                files: SRC_TS_BLOB,
-                tasks: [TASK_LINT]
+                tasks: [TASK_LINT, TASK_CODE, TASK_DOC]
             },
             style: {
                 files: SRC_SASS_BLOB,
@@ -155,7 +152,8 @@ module.exports = function(grunt) {
                     port: WEBSERVER_PORT,
                     hostname: '*',
                     base: DIR_DIST,
-                    keepalive: true
+                    keepalive: true,
+                    open: WEBSERVER_OPEN_BROWSER
                 },
             },
         },
