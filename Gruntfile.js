@@ -17,7 +17,7 @@ const DIR_TS_CACHE = '.tscache',
 // source files and blobs
 const SRC_TS_BLOB = [join(DIR_SRC, '**/*.ts')],
     SRC_ASSETS_BLOB = [join(DIR_SRC, 'client/assets/**')],
-    SRC_SASS_FILE = join(DIR_SRC, 'client/style/index.scss'),
+    SRC_SASS_FILE = join(DIR_SRC, 'client/index.scss'),
     SRC_SASS_BLOB = [join(DIR_SRC, 'client/index.scss'), join(DIR_SRC, 'client/style/**/*.scss')],
     SRC_EJS_FILE = join(DIR_SRC, 'client/index.ejs'),
     SRC_EJS_BLOB = [join(DIR_SRC, 'client/index.ejs'), join(DIR_SRC, 'client/**/*.ejs')]
@@ -47,6 +47,8 @@ const TASK_ARRAY_PRODUCTION = [TASK_LINT, TASK_CODE, TASK_COPY, TASK_STYLE, TASK
     TASK_ARRAY_DEV = [TASK_LINT, TASK_CODE, TASK_DOC, TASK_COPY, TASK_STYLE, TASK_HTML_INJECT]
 
 module.exports = function(grunt) {
+    grunt.option('no-color', true) // disable annoying windows sound
+
     const typedoc_config = require('./' + CONFIG_TYPEDOC)
     typedoc_config.out = DIR_DIST_DOCS
 
@@ -62,13 +64,15 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON(PACKAGE_FILE),
         ts: {
             default : {
-                tsconfig: CONFIG_TS,
+                tsconfig: CONFIG_TS
+            },
+            options: {
                 tsCacheDir: DIR_TS_CACHE
             }
         },
         watch: {
             options: {
-                livereload: WEBSERVER_RELOAD_PORT,
+                livereload: WEBSERVER_RELOAD_PORT
             },
             typescript: {
                 files: SRC_TS_BLOB,
@@ -95,7 +99,8 @@ module.exports = function(grunt) {
         },
         eslint: {
             options: {
-                configFile: CONFIG_ESLINT
+                configFile: CONFIG_ESLINT,
+                failOnError: false
             },
             target: SRC_TS_BLOB
         },
@@ -104,6 +109,9 @@ module.exports = function(grunt) {
                 src: [SRC_EJS_FILE],
                 dest: join(DIR_DIST, DIST_HTML_FILE),
                 expand: false,
+                options: {
+                    injectSnippet: ''
+                }
             },
             inject: {
                 src: [SRC_EJS_FILE],

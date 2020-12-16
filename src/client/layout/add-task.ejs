@@ -1,7 +1,7 @@
 <div class="row add-task">
     <div class="col s12 m12">
         <div class="card red lighten-4">
-            <form action="#">
+            <form action="#" id="add_task_form">
                 <div class="card-content white-text">
                     <div class="row">
                         <div class="input-field col s12">
@@ -11,8 +11,8 @@
 
 
                         <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Add here additional task description</label>
+                            <textarea id="task_description" class="materialize-textarea"></textarea>
+                            <label for="task_description">Add here additional task description</label>
                         </div>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
 
                     </div>
                     <div class="col s1">
-                        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                        <a class="btn-floating btn-large waves-effect waves-light red" id="task_button"><i class="material-icons">add</i></a>
                     </div>
                 </div>
             </form>

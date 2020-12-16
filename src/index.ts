@@ -1,15 +1,19 @@
+import { TodoView } from './views/todo.view';
+import { TodoController } from './controllers/todo.controller';
+import { TaskModel } from './models/task.model';
+import { ITodoController } from "./controllers/todo.controller.interface";
+
 /**
- * Standard links:
- * {@link Foo} or {@linkplain Foo} or [[Foo]]
+ * Start function
  *
- * Code links: (Puts Foo inside <code> tags)
- * {@linkcode Foo} or [[`Foo`]]
+ * run controller with [[TodoView]] and [[TaskModel]]
+ * @return app
  */
-export class Bar implements Foo {
-    member = true;
+export function index(): ITodoController {
+    const app = new TodoController(new TodoView, new TaskModel)
+    app.start()
+    return app
 }
 
-/** More details */
-interface Foo {
-    member: boolean;
-}
+/* istanbul ignore next */
+if (typeof window !== 'undefined') index()

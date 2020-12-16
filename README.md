@@ -1,4 +1,4 @@
-# Todo Typescript App ![language](https://img.shields.io/badge/language-typescript-blue.svg)
+# TodoView Typescript App ![language](https://img.shields.io/badge/language-typescript-blue.svg)
 > Simple todo app written in typescript
 
 ## :books: Table of Contents
@@ -6,7 +6,7 @@
 - [Installation](#package-installation)
 - [Usage](#hammer_and_wrench-usage)
 - [Architecture](#cityscape-architecture)
-- [Todo](#memo-todo)
+- [TodoView](#memo-todo)
 - [Showcase](#framed_picture-showcase)
 - [License](#scroll-license)
 
@@ -21,6 +21,7 @@ npm install -D
 ```
 
 ## :hammer_and_wrench: Usage
+
 Build production code
 ```sh
 npm run build
@@ -56,7 +57,7 @@ npm run eslint:fix # eslint check with fix
 |Language|[typescript](https://www.typescriptlang.org/)|
 |Docs|[typedoc](https://typedoc.org/)|
 |Lint|[eslint](https://eslint.org/)|
-|Task Runner|[Grunt](https://gruntjs.com/)|
+|TaskModel Runner|[Grunt](https://gruntjs.com/)|
 |Module Packer|[RequireJs](https://requirejs.org/)|
 |Template Engine|[EJS](https://ejs.co/)|
 |Stylesheet Preprocessor|[Sass](https://sass-lang.com/)|
@@ -65,14 +66,13 @@ npm run eslint:fix # eslint check with fix
 |Assertion Library|[Chai](https://www.chaijs.com/)|
 |Test Coverage|[istanbuljs/nyc](https://github.com/istanbuljs/nyc)|
 
-
 ## :framed_picture: Showcase
-
 //todo add showcase images
 
 ## :memo: Todo
 - add task priority (and sort by priority)
 - add task tags (and sort by tags)
+- possibility to edit tasks
 - search a task by name
 - server sync
 - LocalStorage sync
