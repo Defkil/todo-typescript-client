@@ -34,3 +34,5 @@ git commit -m "Deploy a demo and code docs to GitHub Pages Travis build: $TRAVIS
 git push --force "https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git"
 
 echo "Documentation successfully published"
+
+set +u
