@@ -1,0 +1,16 @@
+language: node_js
+
+node_js:
+  - lts/*
+
+branches:
+  except:
+    - gh-pages
+
+after_success:
+  - npm run coverage:coveralls
+  - ./gendoc.sh
+
+env:
+  global:
+    secure: "adIImNqKbIv1d5Vep8uq8sWVmgXb5xkCbcS9vf0Ml8IobZad7iPDrWc2jXkIM6++b6g/61KwpmS0X0RpZpaqKsx4xl9Cn65a80/r6jHeSgXHuvr4KTBMMCBOuwx2txlX3hMABvg4PXgZuREQRfheWBQZXM5ygWZqAGIFBlD49vMxxeE/DrGqyKfmmjazCCr075d0pZFcUzEqLcr4T1Tbb5n83qrceWCo1xHKutKvbuFyeltn3JOWqJWj6QG0LErmtjkuQ62r+cWmtcjjOuFkT7vnNUG6KKFJxqxEBIliRsOIc2tyh+XjV4AirPwbCeqvElokt/d/6CKPFS1etL5A26yE1CLbV1xUt78zmttA/QTGy7llkhkVszNfvLntgmaeoqbt8dMnzQVFQluC3bLLnR98WM66wHLrejrWJLZ8xCh+r42b8QtfLfQds5Xh0ouosN4+2lmkoH5S04SKNjQqx6Jfgt2CskvME3rx+WsYkUlKm0se0a3BFqXNdMvsamcSIYcsK5wR7TO0+Y0yHNJnKNbXMOSfenZm+a1O4ssyobzhGBvuF4Fei6zFPz+7BspNnPLjO6T5ddUTiC7fzl276gV5814RNOiRIVT6m3xjrc+AuW2unVsyKrvqnLBRQamk6mjRrjArR2zBanE2lfbYsY+rOvrdR3xL4F8HsS6C/j0="
