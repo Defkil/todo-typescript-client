@@ -13,8 +13,9 @@ mkdir -p "$DOCS_DIR"
 npm run docs
 npm run build
 
+cp -a "dist/." "$DOCS_DIR/"
 cp -a "docs/." "$DOCS_DIR/docs/"
-cp -a "dist/." "$DOCS_DIR/demo/"
+
 
 echo "Documentation successfully built"
 if [[ -n $TRAVIS_PULL_REQUEST_BRANCH ]]; then
