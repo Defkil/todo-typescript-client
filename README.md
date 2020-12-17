@@ -1,4 +1,9 @@
-# TodoView Typescript App ![language](https://img.shields.io/badge/language-typescript-blue.svg)
+# TodoView Typescript App
+![language](https://img.shields.io/badge/language-typescript-blue.svg)
+[![Docs](https://badgen.net/badge/docs/online/blue)](https://defkil.github.io/todo-typescript-client/main/docs/)
+[![Docs](https://img.shields.io/static/v1?label=demo&color=blue&message=online)](https://defkil.github.io/todo-typescript-client/main/demo/)
+[![Coverage Status](https://coveralls.io/repos/github/Defkil/todo-typescript-client/badge.svg?branch=main)](https://coveralls.io/github/Defkil/todo-typescript-client?branch=main)
+[![dependencies Status](https://david-dm.org/defkil/todo-typescript-client/dev-status.svg)](https://david-dm.org/defkil/todo-typescript-client?type=dev)
 > Simple todo app written in typescript
 
 ## :books: Table of Contents
@@ -57,7 +62,7 @@ npm run eslint:fix # eslint check with fix
 |Language|[typescript](https://www.typescriptlang.org/)|
 |Docs|[typedoc](https://typedoc.org/)|
 |Lint|[eslint](https://eslint.org/)|
-|TaskModel Runner|[Grunt](https://gruntjs.com/)|
+|Task Runner|[Grunt](https://gruntjs.com/)|
 |Module Packer|[RequireJs](https://requirejs.org/)|
 |Template Engine|[EJS](https://ejs.co/)|
 |Stylesheet Preprocessor|[Sass](https://sass-lang.com/)|
@@ -77,7 +82,7 @@ npm run eslint:fix # eslint check with fix
 - server sync
 - LocalStorage sync
 - customise settings
-- responsive design
+- responsive design (header need to be fixed)
 
 ## :scroll: License
 [GNU GPLv3](LICENSE) © [Oliver Grüttner](https://github.com/defkil/)
