@@ -1,0 +1,253 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>todo-typescript-client</title>
+	<meta name="description" content="Documentation for todo-typescript-client">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">todo-typescript-client</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1>todo-typescript-client</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#todoview-typescript-app-" id="todoview-typescript-app-" style="color: inherit; text-decoration: none;">
+					<h1>TodoView Typescript App <img src="https://img.shields.io/badge/language-typescript-blue.svg" alt="language"></h1>
+				</a>
+				<blockquote>
+					<p>Simple todo app written in typescript</p>
+				</blockquote>
+				<a href="#books-table-of-contents" id="books-table-of-contents" style="color: inherit; text-decoration: none;">
+					<h2>:books: Table of Contents</h2>
+				</a>
+				<ul>
+					<li><a href="#package-installation">Installation</a></li>
+					<li><a href="#hammer_and_wrench-usage">Usage</a></li>
+					<li><a href="#cityscape-architecture">Architecture</a></li>
+					<li><a href="#memo-todo">TodoView</a></li>
+					<li><a href="#framed_picture-showcase">Showcase</a></li>
+					<li><a href="#scroll-license">License</a></li>
+				</ul>
+				<a href="#package-installation" id="package-installation" style="color: inherit; text-decoration: none;">
+					<h2>:package: Installation</h2>
+				</a>
+				<p>Clone or <a href="https://github.com/Defkil/todo-typescript-client/archive/main.zip">Download</a> this project</p>
+				<pre><code class="language-sh">git <span class="hljs-built_in">clone</span> https://github.com/Defkil/todo-typescript-client.git</code></pre>
+				<p>Open a terminal in the project folder and install the NPM dependencies.</p>
+				<pre><code class="language-sh">npm install -D</code></pre>
+				<a href="#hammer_and_wrench-usage" id="hammer_and_wrench-usage" style="color: inherit; text-decoration: none;">
+					<h2>:hammer_and_wrench: Usage</h2>
+				</a>
+				<p>Build production code</p>
+				<pre><code class="language-sh">npm run build</code></pre>
+				<p>Build development code</p>
+				<pre><code class="language-sh">npm run dev</code></pre>
+				<p>Build development code on file changes with a webserver (<a href="http://localhost:61337">http://localhost:61337</a>) and auto-reload</p>
+				<pre><code class="language-sh">npm run live</code></pre>
+				<p>All scripts</p>
+				<pre><code class="language-sh">npm run build <span class="hljs-comment"># build development code</span>
+npm run dev <span class="hljs-comment"># build development code</span>
+npm run <span class="hljs-built_in">test</span> <span class="hljs-comment"># mocha test script</span>
+npm run coverage <span class="hljs-comment"># coverage check</span>
+npm run live <span class="hljs-comment"># dev live script</span>
+npm run docs <span class="hljs-comment"># generate docs</span>
+npm run eslint <span class="hljs-comment"># eslint check</span>
+npm run eslint:fix <span class="hljs-comment"># eslint check with fix</span></code></pre>
+				<a href="#cityscape-architecture" id="cityscape-architecture" style="color: inherit; text-decoration: none;">
+					<h2>:cityscape: Architecture</h2>
+				</a>
+				<p>//todo add uml with mvc</p>
+				<a href="#overview" id="overview" style="color: inherit; text-decoration: none;">
+					<h3>Overview</h3>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th align="left"></th>
+							<th align="left"></th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td align="left">Language</td>
+							<td align="left"><a href="https://www.typescriptlang.org/">typescript</a></td>
+						</tr>
+						<tr>
+							<td align="left">Docs</td>
+							<td align="left"><a href="https://typedoc.org/">typedoc</a></td>
+						</tr>
+						<tr>
+							<td align="left">Lint</td>
+							<td align="left"><a href="https://eslint.org/">eslint</a></td>
+						</tr>
+						<tr>
+							<td align="left">TaskModel Runner</td>
+							<td align="left"><a href="https://gruntjs.com/">Grunt</a></td>
+						</tr>
+						<tr>
+							<td align="left">Module Packer</td>
+							<td align="left"><a href="https://requirejs.org/">RequireJs</a></td>
+						</tr>
+						<tr>
+							<td align="left">Template Engine</td>
+							<td align="left"><a href="https://ejs.co/">EJS</a></td>
+						</tr>
+						<tr>
+							<td align="left">Stylesheet Preprocessor</td>
+							<td align="left"><a href="https://sass-lang.com/">Sass</a></td>
+						</tr>
+						<tr>
+							<td align="left">CSS/Sass Framework</td>
+							<td align="left"><a href="https://materializecss.com/">Materialize</a></td>
+						</tr>
+						<tr>
+							<td align="left">Test Runner</td>
+							<td align="left"><a href="https://mochajs.org/">Mocha</a></td>
+						</tr>
+						<tr>
+							<td align="left">Assertion Library</td>
+							<td align="left"><a href="https://www.chaijs.com/">Chai</a></td>
+						</tr>
+						<tr>
+							<td align="left">Test Coverage</td>
+							<td align="left"><a href="https://github.com/istanbuljs/nyc">istanbuljs/nyc</a></td>
+						</tr>
+				</tbody></table>
+				<a href="#framed_picture-showcase" id="framed_picture-showcase" style="color: inherit; text-decoration: none;">
+					<h2>:framed_picture: Showcase</h2>
+				</a>
+				<p>//todo add showcase images</p>
+				<a href="#memo-todo" id="memo-todo" style="color: inherit; text-decoration: none;">
+					<h2>:memo: Todo</h2>
+				</a>
+				<ul>
+					<li>add task priority (and sort by priority)</li>
+					<li>add task tags (and sort by tags)</li>
+					<li>possibility to edit tasks</li>
+					<li>search a task by name</li>
+					<li>server sync</li>
+					<li>LocalStorage sync</li>
+					<li>customise settings</li>
+					<li>responsive design</li>
+				</ul>
+				<a href="#scroll-license" id="scroll-license" style="color: inherit; text-decoration: none;">
+					<h2>:scroll: License</h2>
+				</a>
+				<p><a href="LICENSE">GNU GPLv3</a> © <a href="https://github.com/defkil/">Oliver Grüttner</a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_controllers_todo_controller_.html">&quot;controllers/todo.controller&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_controllers_todo_controller_interface_.html">&quot;controllers/todo.controller.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_.html">&quot;index&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_index_interface_.html">&quot;index.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_task_model_.html">&quot;models/task.model&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_models_task_model_interface_.html">&quot;models/task.model.interface&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_views_todo_view_.html">&quot;views/todo.view&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_views_todo_view_interface_.html">&quot;views/todo.view.interface&quot;</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
