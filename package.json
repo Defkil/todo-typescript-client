@@ -6,7 +6,7 @@
   "scripts": {
     "build": "grunt",
     "dev": "grunt dev --force",
-    "test": "cross-env TS_NODE_FILES=true mocha -r ts-node/register -exit test/**/*.ts",
+    "test": "cross-env TS_NODE_FILES=true mocha -r ts-node/register -exit ./test/**/*.spec.ts",
     "coverage:coveralls": "npm run coverage && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc npm run test",
     "live": "grunt live --force",
