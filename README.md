@@ -7,10 +7,9 @@
 > Simple todo app written in typescript
 
 ## :books: Table of Contents
-
 - [Installation](#package-installation)
 - [Usage](#hammer_and_wrench-usage)
-- [Architecture](#cityscape-architecture)
+- [Architecture](#cityscape-used-technology)
 - [TodoView](#memo-todo)
 - [Showcase](#framed_picture-showcase)
 - [License](#scroll-license)
@@ -26,7 +25,6 @@ npm install -D
 ```
 
 ## :hammer_and_wrench: Usage
-
 Build production code
 ```sh
 npm run build
@@ -51,12 +49,7 @@ npm run eslint # eslint check
 npm run eslint:fix # eslint check with fix
 ```
 
-## :cityscape: Architecture
-
-//todo add uml with mvc
-
-### Overview
-
+## :cityscape: Used Technology
 | | |
 |:--------------|:-------------|
 |Language|[typescript](https://www.typescriptlang.org/)|
@@ -74,6 +67,8 @@ npm run eslint:fix # eslint check with fix
 ## :framed_picture: Showcase
 //todo add showcase images
 
+[Demo](https://img.shields.io/static/v1?label=demo&color=blue&message=online) is available
+
 ## :memo: Todo
 - add task priority (and sort by priority)
 - add task tags (and sort by tags)
@@ -86,19 +81,3 @@ npm run eslint:fix # eslint check with fix
 
 ## :scroll: License
 [GNU GPLv3](LICENSE) © [Oliver Grüttner](https://github.com/defkil/)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
