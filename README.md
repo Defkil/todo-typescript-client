@@ -1,7 +1,7 @@
 # TodoView Typescript App
 [![Language](https://img.shields.io/badge/language-typescript-blue.svg)](https://www.typescriptlang.org/)
 [![Docs](https://badgen.net/badge/docs/online/blue)](https://defkil.github.io/todo-typescript-client/main/docs/)
-[![Demo](https://img.shields.io/static/v1?label=demo&color=blue&message=online)](https://defkil.github.io/todo-typescript-client/main/demo/)
+[![Demo](https://img.shields.io/static/v1?label=demo&color=blue&message=online)](https://defkil.github.io/todo-typescript-client/main/)
 [![Coverage Status](https://coveralls.io/repos/github/Defkil/todo-typescript-client/badge.svg?branch=main)](https://coveralls.io/github/Defkil/todo-typescript-client?branch=main)
 [![Dev Dependencies Status](https://david-dm.org/defkil/todo-typescript-client/dev-status.svg)](https://david-dm.org/defkil/todo-typescript-client?type=dev)
 > Simple todo app written in typescript
