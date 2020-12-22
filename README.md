@@ -67,7 +67,7 @@ npm run eslint:fix # eslint check with fix
 ## :framed_picture: Showcase
 //todo add showcase images
 
-[Demo](https://img.shields.io/static/v1?label=demo&color=blue&message=online) is available
+[Demo](https://defkil.github.io/todo-typescript-client/main/) is available
 
 ## :memo: Todo
 - add task priority (and sort by priority)
