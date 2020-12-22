@@ -80,4 +80,4 @@ npm run eslint:fix # eslint check with fix
 - responsive design (header need to be fixed)
 
 ## :scroll: License
-[GNU GPLv3](LICENSE) © [Oliver Grüttner](https://github.com/defkil/)
+[Apache-2.0 License](https://github.com/Defkil/todo-typescript-client/blob/main/LICENSE) © [Oliver Grüttner](https://github.com/defkil/)
