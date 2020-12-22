@@ -1,4 +1,4 @@
-# TodoView Typescript App
+# Todo Typescript App
 [![Language](https://img.shields.io/badge/language-typescript-blue.svg)](https://www.typescriptlang.org/)
 [![Docs](https://badgen.net/badge/docs/online/blue)](https://defkil.github.io/todo-typescript-client/main/docs/)
 [![Demo](https://img.shields.io/static/v1?label=demo&color=blue&message=online)](https://defkil.github.io/todo-typescript-client/main/)
